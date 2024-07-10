@@ -289,11 +289,14 @@ do	-- Spawn and Update funcs
 
 		Entity:SetNWEntity("ACF.Rotator", Rotator)
 
+		Rotator:SetModel("models/hunter/plates/plate.mdl")
 		Rotator:SetPos(Entity:GetPos())
 		Rotator:SetAngles(Entity:GetAngles())
 		Rotator:SetParent(Entity)
 		Rotator:Spawn()
+		Rotator:PhysicsInit(SOLID_VPHYSICS)
 		Rotator:SetRenderMode(RENDERMODE_NONE)
+		Rotator:SetNotSolid(true)
 		Rotator:DrawShadow(false)
 
 		Entity.Rotator			= Rotator
@@ -445,7 +448,7 @@ do	-- Spawn and Update funcs
 
 				ParentLink(Entity,k,true)
 			else
-				if not IsValid(k) then continue end
+				if not ACF.Check(k) then continue end
 				ParentLink(Entity,k,true)
 
 				if Class == "acf_turret_motor" then k:ValidatePlacement() end
